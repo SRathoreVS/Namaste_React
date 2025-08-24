@@ -1,0 +1,20 @@
+.input-btn {
+  margin-left: 40%;
+  margin-right: 40%;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.input-btn > input {
+  border-radius: 10px;
+}
+.input-btn > button {
+  border-radius: 10px;
+}
+.shimmer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 1rem;
+}
