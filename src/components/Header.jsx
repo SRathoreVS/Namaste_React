@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { LOGO_URL } from "../utils/utility";
 import "../scss/Header.scss";
 
 const Header = () => {
-  const handleLogIn = () => {};
+  const [auth, setAuth] = useState("Login");
+
+  const handleLogIn = () => {
+    if (auth === "Login") setAuth("Logout");
+    else setAuth("Login");
+  };
 
   return (
     <div className="header-container">
@@ -22,7 +27,7 @@ const Header = () => {
           <button>Add-on</button>
         </li>
         <li className="lists">
-          <button onClick={handleLogIn}>Login</button>
+          <button onClick={handleLogIn}>{auth}</button>
         </li>
       </ul>
     </div>
