@@ -135,4 +135,19 @@ export default Body;
 
 ---
 
+## `useEffect` Hook Behavior
+
+- **No dependency array (`useEffect(fn)`):**  
+  Runs **after every render** of the component.
+
+- **Empty dependency array (`useEffect(fn, [])`):**  
+  Runs **only once** after the initial render (component mount).
+
+- **With dependencies (`useEffect(fn, [auth])`):**  
+  Runs **only when** the specified dependency (`auth`) **changes**.
+
+- Use dependency arrays to control when your side effects run.
+- Common use cases: data fetching, subscriptions, manual DOM updates.
+- Always clean up side effects if needed (e.g., return a cleanup function).
+
 ✅ Everything is in this single `.md` file: **Hook theory + Example + Code + Takeaways**.
