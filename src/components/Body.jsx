@@ -46,7 +46,7 @@ const Body = () => {
 
   if (photo.length === 0) {
     return (
-      <div className="shimmer-grid">
+      <div>
         {Array.from({ length: 8 }).map((_, index) => (
           <Shimmer key={index} />
         ))}
