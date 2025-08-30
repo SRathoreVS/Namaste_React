@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { LOGO_URL } from "../utils/utility";
 import "../scss/Header.scss";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [auth, setAuth] = useState("Login");
@@ -19,19 +20,19 @@ const Header = () => {
       <img className="logo-img" src={LOGO_URL} alt="logo-image" />
       <ul>
         <li className="lists">
-          <button>Home</button>
+          <Link to="/">Home</Link>
         </li>
         <li className="lists">
-          <button>About</button>
+          <Link to="/about">About</Link>
         </li>
         <li className="lists">
-          <button>Contact</button>
+          <Link to="/contact">Contact</Link>
         </li>
         <li className="lists">
-          <button>Add-on</button>
+          <Link>Add-on</Link>
         </li>
         <li className="lists">
-          <button onClick={handleLogIn}>{auth}</button>
+          <Link onClick={handleLogIn}>{auth}</Link>
         </li>
       </ul>
     </div>

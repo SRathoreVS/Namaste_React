@@ -4,13 +4,13 @@ To set up routing in React, use the `react-router-dom` library.
 
 ### 1. Install and Import
 
-First, install the package (if not already):
+Install the package:
 
 ```bash
 npm install react-router-dom
 ```
 
-Import the required functions:
+Import the necessary functions:
 
 ```js
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -18,14 +18,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 ### 2. Define Routes
 
-Create a router configuration that maps paths to components:
+Create your route configuration by mapping paths to components:
 
 ```js
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <Error />, // Handles errors for this route
+    errorElement: <Error />, // Custom error UI
   },
   {
     path: "/about",
@@ -36,16 +36,45 @@ const appRouter = createBrowserRouter([
 
 ### 3. Provide Router to Your App
 
-Instead of rendering `<App />` directly, use the router provider:
+Wrap your application with the router provider:
 
 ```js
 <RouterProvider router={appRouter} />
 ```
 
-### 4. Handling Errors
+### 4. Nested Routes
 
-You can specify an `errorElement` for any route to display custom error UI.
+For layouts with shared components (like headers), use nested routes:
 
-### 5. Access Router Error Hook
+```js
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />, // App contains shared layout
+    children: [
+      {
+        path: "about",
+        element: <AboutUs />,
+        errorElement: <Error />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+        errorElement: <Error />,
+      },
+    ],
+    errorElement: <Error />,
+  },
+]);
+```
 
-React Router provides hooks like `useRouteError` for advanced error handling in your components.
+Use the `<Outlet />` component in your layout to render child routes.
+
+### 5. Error Handling
+
+Assign an `errorElement` to routes for custom error UIs. Use hooks like `useRouteError` for advanced error handling in components.
+
+**Navigation:**  
+Use `<Link>` for client-side navigation without page reloads.  
+`<a>` ❌ (causes full reload)  
+`<Link>` ✅ (single-page navigation)
