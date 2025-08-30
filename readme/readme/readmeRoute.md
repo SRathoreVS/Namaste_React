@@ -10,7 +10,7 @@ Install the package:
 npm install react-router-dom
 ```
 
-Import the necessary functions:
+Import the required functions:
 
 ```js
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -18,7 +18,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 ### 2. Define Routes
 
-Create your route configuration by mapping paths to components:
+Configure your routes by mapping paths to components:
 
 ```js
 const appRouter = createBrowserRouter([
@@ -76,5 +76,9 @@ Assign an `errorElement` to routes for custom error UIs. Use hooks like `useRout
 
 **Navigation:**  
 Use `<Link>` for client-side navigation without page reloads.  
-`<a>` ❌ (causes full reload)  
-`<Link>` ✅ (single-page navigation)
+- `<a>` ❌ (causes full reload)  
+- `<Link>` ✅ (single-page navigation)
+
+**Types of Routing:**
+- **Client-side routing:** Components are loaded in the browser at initial page load; navigation does not trigger a full page reload (except for API calls).
+- **Server-side routing:** Navigating between pages triggers a network request and reloads the entire page, fetching new HTML from the server.
