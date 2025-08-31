@@ -7,6 +7,7 @@ import AboutUs from "./nav/AboutUs.jsx";
 import Contact from "./nav/Contact.jsx";
 import Error from "./nav/Error.jsx";
 import Body from "./components/Body.jsx";
+import PhotoMenu from "./components/PhotoMenu.jsx";
 
 //configuration
 const appRouter = createBrowserRouter([
@@ -22,12 +23,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <AboutUs />,
-        errorElement: <Error />,
       },
       {
         path: "/contact",
         element: <Contact />,
-        errorElement: <Error />,
+      },
+      {
+        path: "/photo/:id",
+        element: <PhotoMenu />,
       },
     ],
     errorElement: <Error />,

@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { LOGO_URL } from "../utils/utility";
 import "../scss/Header.scss";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   const [auth, setAuth] = useState("Login");
-
-  useEffect(() => {
-    console.log("useEffect Called");
-  }, [auth]);
 
   const handleLogIn = () => {
     if (auth === "Login") setAuth("Logout");

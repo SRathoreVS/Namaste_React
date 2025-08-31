@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Cards from "../utils/Cards";
 import "../scss/Body.scss";
 import Shimmer from "../utils/Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [photo, setPhoto] = useState([]);
@@ -30,11 +31,11 @@ const Body = () => {
 
   const handleSearch = () => {
     if (search.trim() === "") {
-      setFilteredPhotos(photo); //all
+      setFilteredPhotos(photo); // all
     } else {
-      const result = photo.filter((item) => {
-        return item.title.toLowerCase().includes(search.toLowerCase());
-      });
+      const result = photo.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase())
+      );
       setFilteredPhotos(result);
     }
   };
@@ -71,7 +72,9 @@ const Body = () => {
 
       {filteredPhotos.length > 0 ? (
         filteredPhotos.map((photoData) => (
-          <Cards key={photoData.id} photos={photoData} />
+          <Link key={photoData.id} to={`/photo/${photoData.id}`}>
+            <Cards photos={photoData} />
+          </Link>
         ))
       ) : (
         <p>No photos found</p>
