@@ -1,24 +1,24 @@
-## Setting Up React Router
+## React Router Setup Guide
 
-To set up routing in React, use the `react-router-dom` library.
+[Installation](#1-installation) • [Import Essentials](#2-import-essentials) • [Route Configuration](#3-route-configuration) • [Router Provider](#4-router-provider) • [Nested Routes & Layouts](#5-nested-routes--layouts) • [Error Handling](#6-error-handling) • [Navigation](#7-navigation) • [Routing Types](#8-routing-types) • [Dynamic Routing](#9-dynamic-routing)
 
-### 1. Install and Import
+Set up routing in React using the `react-router-dom` library.
 
-Install the package:
+### 1. Installation
 
 ```bash
 npm install react-router-dom
 ```
 
-Import the required functions:
+### 2. Import Essentials
 
 ```js
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 ```
 
-### 2. Define Routes
+### 3. Route Configuration
 
-Configure your routes by mapping paths to components:
+Define your routes by mapping paths to components:
 
 ```js
 const appRouter = createBrowserRouter([
@@ -34,23 +34,23 @@ const appRouter = createBrowserRouter([
 ]);
 ```
 
-### 3. Provide Router to Your App
+### 4. Router Provider
 
-Wrap your application with the router provider:
+Wrap your app with the router provider:
 
 ```js
 <RouterProvider router={appRouter} />
 ```
 
-### 4. Nested Routes
+### 5. Nested Routes & Layouts
 
-For layouts with shared components (like headers), use nested routes:
+For shared layouts (e.g., headers), use nested routes:
 
 ```js
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App />, // App contains shared layout
+    element: <App />, // Shared layout
     children: [
       {
         path: "about",
@@ -68,17 +68,29 @@ const appRouter = createBrowserRouter([
 ]);
 ```
 
-Use the `<Outlet />` component in your layout to render child routes.
+Use `<Outlet />` in your layout component to render child routes.
 
-### 5. Error Handling
+### 6. Error Handling
 
-Assign an `errorElement` to routes for custom error UIs. Use hooks like `useRouteError` for advanced error handling in components.
+Assign `errorElement` for custom error UIs. Use hooks like `useRouteError` for advanced error handling.
 
-**Navigation:**  
-Use `<Link>` for client-side navigation without page reloads.  
-- `<a>` ❌ (causes full reload)  
-- `<Link>` ✅ (single-page navigation)
+### 7. Navigation
 
-**Types of Routing:**
-- **Client-side routing:** Components are loaded in the browser at initial page load; navigation does not trigger a full page reload (except for API calls).
-- **Server-side routing:** Navigating between pages triggers a network request and reloads the entire page, fetching new HTML from the server.
+Use `<Link>` for client-side navigation (no page reload):
+
+- `<a>` ❌ (full reload)
+- `<Link>` ✅ (SPA navigation)
+
+### 8. Routing Types
+
+- **Client-side routing:** Navigation updates the UI without reloading the page.
+- **Server-side routing:** Each navigation triggers a network request and reloads the page.
+
+### 9. Dynamic Routing
+
+Use the `useParams()` hook to access route parameters:
+
+```js
+const params = useParams();
+console.log(params); // { id: 1 }
+```

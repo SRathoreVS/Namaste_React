@@ -12,7 +12,7 @@ const PhotoMenu = () => {
     const fetchedPhotos = async () => {
       const data = await fetch(`${PHOTOS_API}/${id}`);
       const resJson = await data.json();
-      console.log(resJson);
+      // console.log(resJson);
       setPhotos(resJson.photo);
     };
     fetchedPhotos();
