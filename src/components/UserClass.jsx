@@ -1,39 +1,51 @@
-// just like functional Component is Js function in the end ,
-// same WAY => Class based component is JS class
-
-// class -nameOfComp- extends(for to make it component) React.Component {}
-// React.Component is Class in react package of UserClass is inheriting props
-// it has explicit render() which returns JSX
-
-// we pass a prop to class based component ,
-// <UserClass name={"Satyam rathore (Class)"} />
-//  how do we recieve it => using Constructor(){
-// super(props) at top => to recieve props from parent constructor , if not then this will be undefined
-// }
-
-// create state variales in here  =>
-// when the instance of class is created constructor() is called || best place to recieve PROPS && best place to create state vars (this.state which is big whole obj)
-
 import React from "react";
 
 class UserClass extends React.Component {
   // to recieve the Props
+  // constructor - (1)
   constructor(props) {
     super(props);
 
-    //create a state || a big whole obj || not like usestate (define new newstate for different state but bts react put it in one OBJECT)
+    // *NOTE : create a state || a big whole obj || not like usestate (define new newstate for different state but bts react put it in one OBJECT)
     // this will hold all states in a comp
     this.state = {
       count: 1,
+      userInfo: {
+        name: "dummyName",
+        avatar_url: "default",
+      },
     };
-
     // update your state
     // TODO :
     // never update state directly
   }
+
+  //? REVIEW:  componentDidMount() - (3)
+  // used to make API calls [because : we quickly render the comp then call the API same as useEffect || reacts update the DOM || it batches all the render and constructor and updates]
+  async componentDidMount() {
+    // API call
+    const data = await fetch("https://api.github.com/users/SRathoreVS");
+    const json = await data.json();
+
+    this.setState({
+      userInfo: json,
+    });
+
+    console.log(json);
+  }
+
+  componentDidUpdate() {
+    console.log("component did update is called ");
+  }
+
+  componentWillUnmount() {
+    console.log("component will unmount is called ");
+  }
+
+  // render - (2)
   render() {
-    const { name, location } = this.props;
     const { count } = this.state;
+    const { name, avatar_url } = this.state.userInfo;
     return (
       <div className="user-card">
         <button
@@ -56,7 +68,7 @@ class UserClass extends React.Component {
           Count -
         </button>
         <h2>Name : {name}</h2>
-        <h3>Location : {location}</h3>
+        <img src={avatar_url} alt="avatar" />
         <h4>Contact : priyasatyam@1806</h4>
       </div>
     );
