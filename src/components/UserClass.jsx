@@ -21,21 +21,40 @@ class UserClass extends React.Component {
   constructor(props) {
     super(props);
 
-    // it will contain all state variables
+    //create a state || a big whole obj || not like usestate (define new newstate for different state but bts react put it in one OBJECT)
+    // this will hold all states in a comp
     this.state = {
       count: 1,
-      count2: -1,
-      value: 0,
     };
+
+    // update your state
+    // TODO :
+    // never update state directly
   }
   render() {
     const { name, location } = this.props;
-    const { count, count2, value } = this.state;
+    const { count } = this.state;
     return (
       <div className="user-card">
-        <button>Count : {count}</button>
-        <h1>{value} class</h1>
-        <button>Count2 : {count2}</button>
+        <button
+          onClick={() =>
+            this.setState({
+              count: this.state.count + 1,
+            })
+          }
+        >
+          Count +
+        </button>
+        <h1>{count} class</h1>
+        <button
+          onClick={() =>
+            this.setState({
+              count: this.state.count - 1,
+            })
+          }
+        >
+          Count -
+        </button>
         <h2>Name : {name}</h2>
         <h3>Location : {location}</h3>
         <h4>Contact : priyasatyam@1806</h4>
